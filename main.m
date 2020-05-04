@@ -43,7 +43,7 @@ plot(thresholds, thresholdfn);
 xlabel('Threshold');
 ylabel('Number of spots counted');
 % Zoom in on important area
-ylim([0 1500]);
+% ylim([0 1500]);
 
 %% Count the number of dots for a specific threshold
 
@@ -58,8 +58,10 @@ number_of_mrna = thresholdfn(x);
 for n=1:length(x)
 img_binary = im2bw(img2, x(n)/100);
 [B,L,N,A] = bwboundaries(img_binary);
-RGB = label2rgb(L,'jet','k','shuffle'); 
-figure
-imshow(RGB)
+% RGB = label2rgb(L,'jet','k','shuffle'); 
+% figure
+% imshow(RGB)
+imshow(img2); hold on;
+visboundaries(B)
 title(['RNA spot counted: ',num2str(N),' for threshold of: ',num2str( x(n)/100)])
 end

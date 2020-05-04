@@ -39,7 +39,11 @@ img_binary = im2bw(img2, x(n)/100);
 
 % [lab,n] = bwlabeln(img_binary);
 [B,L,N,A] = bwboundaries(img_binary);
-RGB2 = label2rgb(L,'jet','k','shuffle'); 
-figure
-imshow(RGB2)
+% RGB2 = label2rgb(L,'jet','k','shuffle'); 
+% figure
+% imshow(img); hold on;
+% imshow(RGB2)
+imshow(img2); hold on;
+colors=['b' 'g' 'r' 'c' 'm' 'y'];
+visboundaries(B)
 end
