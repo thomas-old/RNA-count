@@ -4,7 +4,7 @@ function outims = LOG_filter(ims)
 % The bandwidth (here 1.5) may need to be changed depending
 % on the pixel size of your camera and your microscope's
 % optical characteristics.
-H = -fspecial('log',15,1.5);
+H = -fspecial('log',[5,5],1.5);
 
 % Here, we amplify the signal by making the filter "3-D"
 H = 1/3*cat(3,H,H,H);

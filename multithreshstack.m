@@ -5,11 +5,12 @@ ims = ims/max(ims(:));
 % Number of thresholds to compute
 npoints = 100;
 
-fprintf('Computing threshold (of %d):    1',npoints);
+% fprintf('Computing threshold (of %d):    1',npoints);
 
 for i = 1:npoints
   % Apply threshold
-  bwl = ims > i/npoints;
+%   bwl = ims > i/npoints;
+  bwl = im2bw(ims, i/100);
 
   % Find particles
   [lab,n] = bwlabeln(bwl);  
@@ -17,7 +18,7 @@ for i = 1:npoints
   % Save count into variable nout
   nout(i) = n;
 
-  fprintf('\b\b\b%3i',i);
+%   fprintf('\b\b\b%3i',i);
 end
 fprintf('\n');
 end

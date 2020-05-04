@@ -34,6 +34,12 @@ line([x x],[0 4000]);
 x = round(x*100);  % 100 is the number of thresholds
 number_of_mrna = thresholdfn(x)
 
-img_binary = im2bw(img2, x/100);
-figure(3)
-imshow(img_binary)
+for n=1:length(x)
+img_binary = im2bw(img2, x(n)/100);
+
+% [lab,n] = bwlabeln(img_binary);
+[B,L,N,A] = bwboundaries(img_binary);
+RGB2 = label2rgb(L,'jet','k','shuffle'); 
+figure
+imshow(RGB2)
+end
