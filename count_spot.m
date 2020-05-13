@@ -2,10 +2,14 @@
 %  05/04/2020, Thomas Hu
 %  
 %  This program counts t he number of mRNA spots in the image file and was
-%  adapted frin arjun raj counting mRNA spots matlab script
+%  adapted frin Arjun Raj counting mRNA spots matlab script
+%
+%  https://www.nature.com/articles/nmeth.1253
 %  
 %  available online at www.math.nyu.edu/~arjunraj/raj_2008_software/
 %  
+
+close all
 
 %% Read image from a directory 
 [file,path] = uigetfile('*.tif');
@@ -58,10 +62,9 @@ number_of_mrna = thresholdfn(x);
 for n=1:length(x)
 img_binary = im2bw(img2, x(n)/100);
 [B,L,N,A] = bwboundaries(img_binary);
-% RGB = label2rgb(L,'jet','k','shuffle'); 
-% figure
-% imshow(RGB)
-imshow(img2); hold on;
+
+figure
+imshowpair(img2, img_binary,'montage'); hold on;
 visboundaries(B)
 title(['RNA spot counted: ',num2str(N),' for threshold of: ',num2str( x(n)/100)])
 end
