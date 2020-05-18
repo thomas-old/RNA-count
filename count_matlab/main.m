@@ -24,17 +24,17 @@ img_adjusted = imadjust(img_gray);
 % Laplacian of Guassian filter on the image
 img_filtered = imgaussfilt(img_adjusted,4);
 
-%% Thresholding
+%% Thresholding level selection
 if tune_segmentation ~= 0
     plot_seg_threshold(img);
 end
 
-%% Choose a threshold level
+%% Choose a threshold level manullay to have the binary mask
 threshold = 50;
 [~,BW] = mask(threshold, img_filtered, 15, 10);
 plot_cc(BW, img);
 
-%% Remove Small Objects
+%% Remove Small Objects defined by the radius
 CC = bwconncomp(BW);
 stats = regionprops(BW,'all');
 radius = 800;
@@ -44,18 +44,18 @@ BW = ismember(L, find([stats.Area] >= radius));
 
 [L,~] = plot_cc(BW, img);
 
-%% Manually remove CC
+%% Manually remove Connected Components (CC)
 c_list = [2 15];
 BW2 = remove_cc(BW, L, c_list);
 
 plot_cc(BW2, img);
 
-%% Image region segmentation
+%% Image region segmentation using watershed segmentation
 D = bwdist(BW2);
 L = watershed(D);
 plot_water(L, img);
 
-%% Connect components
+%% Connect somme CC manually
 L(L==7) = 5;
 L(L==6) = 1;img_binary
 L(L== 12) = 9;

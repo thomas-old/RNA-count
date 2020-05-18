@@ -1,6 +1,10 @@
 function [L,N] = plot_cc(BW, image)
-%PLOT_CC Summary of this function goes here
-%   Detailed explanation goes here
+% This function plot the connected components of a binary mask
+%
+% L = label matrix obtained from matlab function labelmatrix(CC) 
+% N = number of connected components
+% image = input image 
+% BW = binary mask of image
 
 figure
 imshowpair(BW,image,'montage')

@@ -1,6 +1,8 @@
 function plot_spot_threshold(img_filtered)
-%PLOT_SPOT_THRESHOLD Summary of this function goes here
-%   Detailed explanation goes here
+% This function plot the spot threshold of the image
+%
+% image = input image 
+
 % This function call will find the number of mRNAs for all thresholds
 thresholdfn = multithreshstack(img_filtered);
 

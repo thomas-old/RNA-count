@@ -1,6 +1,12 @@
 function [L,BW2] = mask(threshold_level, image, r1, r2)
-%MASK Summary of this function goes here
-%   Detailed explanation goes here
+% This function perform the binary threshold without threshold level on the
+% image 
+%
+% L = label Matrix after watershed segementation
+% BW2 = binary mask image of the input
+% threshold_level = intensity level for binary thresholding
+% image = input image
+% r1 = r2 = radius for morphological transformation
 
 if nargin < 3
     r1=25;

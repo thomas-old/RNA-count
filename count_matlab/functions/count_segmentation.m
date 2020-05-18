@@ -1,6 +1,15 @@
 function [count, stats] = count_segmentation(L, image, threshold)
-%COUNT_SEGMENTATION Summary of this function goes here
-%   Detailed explanation goes here
+% This function perform the bright spot counting on a image specified
+% the label matrix of the image and the intensity threshold
+%
+% count = array of size equal to the number of label in L, each element
+% correspond to the number of spot quantified for region l in L
+% stats = statistics of each region in L
+% 
+% L = label matrix obtained from matlab function labelmatrix(CC) 
+% image = original image 
+% threshold = intensity level for spot counting
+%
 
 % Laplacian of Guassian filter on the image
 img_d = double(image);

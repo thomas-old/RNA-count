@@ -1,6 +1,8 @@
 function plot_water(L, image)
-%WATER Summary of this function goes here
-%   Detailed explanation goes here
+% This function plot the watershed segmentation threshold of the image
+%
+% image = input image 
+% L = label Matrix after watershed segementation
 
 stats = regionprops(L,'all');
 figure
