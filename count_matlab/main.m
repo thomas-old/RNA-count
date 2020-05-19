@@ -4,6 +4,7 @@ clear all
 %% Global parameters
 
 addpath('functions')
+
 %% Read image from a directory
 [file,path] = uigetfile('*.tif');
 if isequal(file,0)
@@ -17,7 +18,7 @@ img = imread(strcat(path,file));
 img_gray = rgb2gray(img);
 img_adjusted = imadjust(img_gray);
 
-% Laplacian of Guassian filter on the image
+% Guassian filter on the image
 img_filtered = imgaussfilt(img_adjusted,4);
 
 %% Thresholding level selection
@@ -52,7 +53,7 @@ BW2 = remove_cc(BW, L, c_list);
 
 [L,~] = plot_cc(BW2, img);
 
-%% Connect somme CC manually
+%% Connect some CC manually
 L(L==7) = 5;
 L(L==6) = 1;
 L(L== 4) = 9;
@@ -80,8 +81,6 @@ if isequal(file,0)
 else
    disp(['User selected ', fullfile(path,file)]);
 end
-
-tune_spot_countintg = true;
 
 % Read the image
 img = imread(strcat(path,file));
