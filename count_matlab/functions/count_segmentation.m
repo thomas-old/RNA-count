@@ -19,17 +19,16 @@ img3 = img3/max(img3(:));
 img_binary = im2bw(img3, threshold);
 
 %% Plot the segmented mask on the original image 
-stats = regionprops(L,'all');
-CC = unique(L);
-Lrgb = label2rgb(L,'jet','k','shuffle');
-figure
-imshow(image)
-hold on;
-count = [];
-himage = imshow(Lrgb);
-himage.AlphaData = alpha;
-title('Original Image with segmented region')
-hold off;
+
+% Lrgb = label2rgb(L,'jet','k','shuffle');
+% figure
+% imshow(image)
+% hold on;
+% count = [];
+% himage = imshow(Lrgb);
+% himage.AlphaData = alpha;
+% title('Original Image with segmented region')
+% hold off;
 
 %% Plot the spot
 
@@ -37,13 +36,26 @@ hold off;
 figure
 imshow(image); hold on;
 visboundaries(B)
+title('RNA spot visualization')
 hold off;
 
 %% Plot the count of the spots
+stats = regionprops(L,'all');
+CC = unique(L);
+% 
+% figure
+% imshow(img_binary)
+% title('RNA spot count for each segmented region')
+% hold on;
+
+Lrgb = label2rgb(L,'jet','k','shuffle');
 figure
-imshow(img_binary)
-title('RNA spot count for each segmented region')
+imshow(image)
 hold on;
+count = [];
+himage = imshow(Lrgb);
+himage.AlphaData = alpha;
+title('RNA spot count for each segmented region')
 % Plot the label
 centroids = cat(1, stats.Centroid);
 for n = 2 : length(CC)
