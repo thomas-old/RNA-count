@@ -1,4 +1,4 @@
-function [count, stats] = count_segmentation(L, image, threshold)
+function [count, stats] = count_segmentation(L, image, threshold, alpha)
 % This function perform the bright spot counting on a image specified
 % the label matrix of the image and the intensity threshold
 %
@@ -11,25 +11,35 @@ function [count, stats] = count_segmentation(L, image, threshold)
 % threshold = intensity level for spot counting
 %
 
-% Laplacian of Guassian filter on the image
+%% Laplacian of Guassian filter on the image
 img_d = double(image);
 img3 = LOG_filter(img_d);
 % Normalize img2
 img3 = img3/max(img3(:));
 img_binary = im2bw(img3, threshold);
 
+%% Plot the segmented mask on the original image 
 stats = regionprops(L,'all');
 CC = unique(L);
-Lrgb = label2rgb(L,'jet','w','shuffle');
+Lrgb = label2rgb(L,'jet','k','shuffle');
 figure
 imshow(image)
 hold on;
 count = [];
 himage = imshow(Lrgb);
-himage.AlphaData = 0.1;
+himage.AlphaData = alpha;
 title('Original Image with segmented region')
 hold off;
 
+%% Plot the spot
+
+[B,~,~,~] = bwboundaries(img_binary);
+figure
+imshow(image); hold on;
+visboundaries(B)
+hold off;
+
+%% Plot the count of the spots
 figure
 imshow(img_binary)
 title('RNA spot count for each segmented region')
