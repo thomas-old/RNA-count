@@ -36,7 +36,6 @@ CC = bwconncomp(BW);
 stats = regionprops(BW,'all');
 
 %% Remove Small Objects defined by the radius
-close all
 
 radius = 800;
 L = labelmatrix(CC);
@@ -46,7 +45,6 @@ BW = ismember(L, find([stats.Area] >= radius));
 [L,~] = plot_cc(BW, img);
 
 %% Manually remove Connected Components (CC)
-close all
 
 c_list = [2 13];
 BW2 = remove_cc(BW, L, c_list);
@@ -72,8 +70,6 @@ Lrgb = label2rgb(L,'jet','k','shuffle');
 % title('Colored Labels Superimposed Transparently on Original Image')
 
 %% Find threshold for counting the number of RNA dot
-
-close all
 
 [file,path] = uigetfile('*.tif');
 if isequal(file,0)
