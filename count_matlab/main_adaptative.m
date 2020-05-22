@@ -6,15 +6,9 @@ clear all
 addpath('functions')
 
 %% Read image from a directory
-[file,path] = uigetfile('*.tif');
-if isequal(file,0)
-    disp('User selected Cancel');
-else
-    disp(['User selected ', fullfile(path,file)]);
-end
-
+img_path = get_img_path();
 % Read the image
-img = imread(strcat(path,file));
+img = imread(img_path);
 img_gray = rgb2gray(img);
 img_adjusted = imadjust(img_gray);
 
