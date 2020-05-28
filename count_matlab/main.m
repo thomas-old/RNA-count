@@ -84,7 +84,6 @@ if tune_spot_counting ~= 0
 plot_spot_threshold(img_filtered)
 end
 
-
 %% RNA Count for each segmented region
 threshold = 0.03;
 [count, stats] = count_segmentation(L, img, threshold, 0.3); 

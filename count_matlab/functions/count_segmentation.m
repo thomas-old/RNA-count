@@ -52,7 +52,7 @@ Lrgb = label2rgb(L,'jet','k','shuffle');
 figure
 imshow(image)
 hold on;
-count = [];
+count = zeros(2, length(CC)-1);
 himage = imshow(Lrgb);
 himage.AlphaData = alpha;
 title('RNA spot count for each segmented region')
@@ -66,7 +66,7 @@ for n = 2 : length(CC)
     [~,~,N,~] = bwboundaries(img_binary);
     H= text(centroids(k,1), centroids(k,2),[num2str(N)]);
     set(H,'Color',[1 0 0], 'FontSize', 13)
-    count = [count N];
+    count(:,n-1) = [n; N];
 end
 hold off
 end

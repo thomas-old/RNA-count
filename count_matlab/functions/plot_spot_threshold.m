@@ -15,7 +15,7 @@ figure(2)
 plot(thresholds, thresholdfn);
 xlabel('Threshold');
 ylabel('Number of spots counted');
-
+ylim([0 10000])
 title('Click at appropriate x/threshold value and hit return')
 
 [x,~] = getpts;
